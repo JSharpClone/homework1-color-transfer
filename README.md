@@ -11,9 +11,9 @@ Team #16
 
 我們準備了三張圖片：
 
-![](https://i.imgur.com/4S6XvLu.png)
-![](https://i.imgur.com/VKd1dfg.png)
-![](https://i.imgur.com/vKQNUwr.jpg)
+[人臉](https://i.imgur.com/4S6XvLu.png)
+[蘋果](https://i.imgur.com/VKd1dfg.png)
+[橘子](https://i.imgur.com/vKQNUwr.jpg)
 
 進行四個實驗：
 
@@ -33,13 +33,16 @@ Team #16
 
 ## Exp: Cycle GAN (64x64) with our weight
 訓練：
+
 ![](https://i.imgur.com/DqdWR1i.png)
 
 轉成橘子（結果在左，原圖在右）：
+
 ![](https://i.imgur.com/50O1Ozp.png)
 ![](https://i.imgur.com/dymfNnS.png)
 
 轉成蘋果（結果在左，原圖在右）：
+
 ![](https://i.imgur.com/x6U6T3m.png)
 ![](https://i.imgur.com/obPRqBF.png)
 
@@ -47,24 +50,29 @@ Team #16
 ## Exp: Cycle GAN (256x256) with our weight
 
 訓練：
+
 ![](https://i.imgur.com/bZKxKKS.jpg)
 
 
 轉成橘子（結果在左，原圖在右）：
+
 ![](https://i.imgur.com/ORLvC2b.png)
 ![](https://i.imgur.com/ZLEAbwp.png)
 
 轉成蘋果（結果在左，原圖在右）：
+
 ![](https://i.imgur.com/5EM3cCP.png)
 ![](https://i.imgur.com/vyGU7aS.png)
 
 ## Exp: Cycle GAN with pretrained weight
 
 轉成橘子（結果在左，原圖在右）：
+
 ![](https://i.imgur.com/cTv8GgO.png)
 ![](https://i.imgur.com/YBO7T4E.png)
 
 轉成蘋果（結果在左，原圖在右）：
+
 ![](https://i.imgur.com/XZe8yo4.png)
 ![](https://i.imgur.com/qPempbc.png)
 
