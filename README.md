@@ -103,9 +103,10 @@ Source 為風格，Target 為要轉換的圖片，Transfer 為結果。
 訓練：
 ![](https://i.imgur.com/IJk1PlH.png)
 
-
 轉成馬（結果在左，原圖在右）：
+
 ![](https://i.imgur.com/BtYdLQB.png)
 
 轉成斑馬（結果在左，原圖在右）：
+
 ![](https://i.imgur.com/nIF3quX.png)
