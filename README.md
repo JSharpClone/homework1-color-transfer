@@ -11,9 +11,9 @@ Team #16
 
 我們準備了三張圖片：
 
-![](https://i.imgur.com/4S6XvLu.png =256x)
-![](https://i.imgur.com/VKd1dfg.png =256x)
-![](https://i.imgur.com/vKQNUwr.jpg =256x)
+![](https://i.imgur.com/4S6XvLu.png)
+![](https://i.imgur.com/VKd1dfg.png)
+![](https://i.imgur.com/vKQNUwr.jpg)
 
 進行四個實驗：
 
