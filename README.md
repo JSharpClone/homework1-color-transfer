@@ -1,77 +1,103 @@
-# Homework 1 (Color-Transfer and Texture-Transfer)
-
-A clean and readable Pytorch implementation of CycleGAN (https://arxiv.org/abs/1703.10593)
-## Assign
-
-1.  20% (Training cycleGAN)
-2.  10% (Inference cycleGAN in personal image)
-3.  20% (Compare with other method)
-4.  30% (Assistant) 
-5.  20% (Mutual evaluation)
-
-reference:
-[Super fast color transfer between images](https://github.com/jrosebr1/color_transfer)
-
-## Getting Started
-Please first install [Anaconda](https://anaconda.org) and create an Anaconda environment using the environment.yml file.
+# CSFX HW 1
 
 ```
-conda env create -f environment.yml
+Team #16
+107062503 許博皓
+10706XXXX 鄭家鈞
+107062566 黃鈺程
 ```
 
-After you create the environment, activate it.
-```
-source activate hw1
-```
+## Introduction
 
-Our current implementation only supports GPU so you need a GPU and need to have CUDA installed on your machine.
+我們準備了三張圖片：
 
-## Training
-### 1. Download dataset
+![](https://i.imgur.com/4S6XvLu.png =256x)
+![](https://i.imgur.com/VKd1dfg.png =256x)
+![](https://i.imgur.com/vKQNUwr.jpg =256x)
 
-```
-mkdir datasets
-bash ./download_dataset.sh <dataset_name>
-```
-Valid <dataset_name> are: apple2orange, summer2winter_yosemite, horse2zebra, monet2photo, cezanne2photo, ukiyoe2photo, vangogh2photo, maps, cityscapes, facades, iphone2dslr_flower, ae_photos
+進行四個實驗：
 
-Alternatively you can build your own dataset by setting up the following directory structure:
+1. 蘋果 轉換成 **橘子風格**
+2. 人臉 轉換成 **橘子風格**
+3. 橘子 轉換成 **蘋果風格**
+5. 人臉 轉換成 **蘋果風格**
 
-    .
-    ├── datasets                   
-    |   ├── <dataset_name>         # i.e. apple2orange
-    |   |   ├── trainA             # Contains domain A images (i.e. apple)
-    |   |   ├── trainB             # Contains domain B images (i.e. orange) 
-    |   |   ├── testA              # Testing
-    |   |   └── testB              # Testing
-    
-### 2. Train
-```
-python train.py --dataroot datasets/<dataset_name>/ --cuda
-```
-This command will start a training session using the images under the *dataroot/train* directory with the hyperparameters that showed best results according to CycleGAN authors. 
+並使用四種 model 來實驗。
 
-Both generators and discriminators weights will be saved ```./output/<dataset_name>/``` the output directory.
+---
 
-If you don't own a GPU remove the --cuda option, although I advise you to get one!
+另外，我們有對程式碼進行一點小修改：
+![](https://i.imgur.com/m65TjNg.png)
 
+根據 tqdm 的文檔，當 `tqdm` 與 `enumerate` 相互使用了，應寫成 `enumerate(tqdm())` 而不是 `tqdm(enumerate())`，因為 `len` 無法作用在 `enumerate` 的結果上，造成 `tqdm` 抓不到總共有幾個 iteration。
 
+## Exp: Cycle GAN (64x64) with our weight
+訓練：
+![](https://i.imgur.com/DqdWR1i.png)
 
-## Testing
-The pre-trained file is on [Google drive](https://drive.google.com/open?id=17FREtttCyFpvjRJxd4v3VVlVAu__Y5do). Download the file and save it on  ```./output/<dataset_name>/netG_A2B.pth``` and ```./output/<dataset_name>/netG_B2A.pth```. 
- 
-```
-python test.py --dataroot datasets/<dataset_name>/ --cuda
-```
-This command will take the images under the ```dataroot/testA/``` and ```dataroot/testB/``` directory, run them through the generators and save the output under the ```./output/<dataset_name>/``` directories. 
+轉成橘子（結果在左，原圖在右）：
+![](https://i.imgur.com/50O1Ozp.png)
+![](https://i.imgur.com/dymfNnS.png)
 
-Examples of the generated outputs (default params) apple2orange, summer2winter_yosemite, horse2zebra dataset:
-
-![Alt text](./output/imgs/0167.png)
-![Alt text](./output/imgs/0035.png)
-![Alt text](./output/imgs/0111.png)
+轉成蘋果（結果在左，原圖在右）：
+![](https://i.imgur.com/x6U6T3m.png)
+![](https://i.imgur.com/obPRqBF.png)
 
 
+## Exp: Cycle GAN (256x256) with our weight
 
-## Acknowledgments
-Code is modified by [PyTorch-CycleGAN](https://github.com/aitorzip/PyTorch-CycleGAN). All credit goes to the authors of [CycleGAN](https://arxiv.org/abs/1703.10593), Zhu, Jun-Yan and Park, Taesung and Isola, Phillip and Efros, Alexei A.
+訓練：
+![](https://i.imgur.com/bZKxKKS.jpg)
+
+
+轉成橘子（結果在左，原圖在右）：
+![](https://i.imgur.com/ORLvC2b.png)
+![](https://i.imgur.com/ZLEAbwp.png)
+
+轉成蘋果（結果在左，原圖在右）：
+![](https://i.imgur.com/5EM3cCP.png)
+![](https://i.imgur.com/vyGU7aS.png)
+
+## Exp: Cycle GAN with pretrained weight
+
+轉成橘子（結果在左，原圖在右）：
+![](https://i.imgur.com/cTv8GgO.png)
+![](https://i.imgur.com/YBO7T4E.png)
+
+轉成蘋果（結果在左，原圖在右）：
+![](https://i.imgur.com/XZe8yo4.png)
+![](https://i.imgur.com/qPempbc.png)
+
+
+## Exp: Color Transfer
+
+Source 為風格，Target 為要轉換的圖片，Transfer 為結果。
+
+![](https://i.imgur.com/hBamxGK.png)
+![](https://i.imgur.com/PV9R4bI.png)
+![](https://i.imgur.com/LqG1EjR.png)
+![](https://i.imgur.com/1dqCxIb.png)
+
+## Report
+
+根據以上實驗，我們有三個結論：
+
+1. Color Transfer 基本就是調色調而已，相對 Cycle GAN 效果並不好。但速度非常快。
+2. size 為 64 的結果效果較差，顆粒感重。而 size 為 256 則效果較好，看起來自然許多，也沒有顆粒感，但就需要訓練比較久。
+3. 和 pre-trained weights 相比，pre-trained 的效果較好，蘋果轉橘子的光澤較為自然。
+
+## Misc.
+
+我們還使用了其他 dataset 訓練。一些結果如下：
+
+### horse2zebra
+
+訓練：
+![](https://i.imgur.com/IJk1PlH.png)
+
+
+轉成馬（結果在左，原圖在右）：
+![](https://i.imgur.com/BtYdLQB.png)
+
+轉成斑馬（結果在左，原圖在右）：
+![](https://i.imgur.com/nIF3quX.png)
